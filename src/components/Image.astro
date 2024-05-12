@@ -1,0 +1,35 @@
+---
+interface Props{
+    name: string;
+    folder: string;
+    title?: string
+}
+
+
+const {name, folder, title } = Astro.props;
+const basePath = '/src/assets/reports/' + folder 
+const darkPath = basePath +  '/dark/' + name + '.png'
+const lightPath = basePath + '/light/' + name + '.png'
+---
+<picture>
+    <source srcset={darkPath} media="(prefers-color-scheme: dark)">
+    <img src={lightPath} alt={title}> 
+</picture>
+<!-- <div id='group' data-light={lightPath} data-dark={darkPath}>
+    <img id="image" alt={title}>
+</div>
+<script>
+    console.log("this is: ", this)
+    const imageDiv = document.getElementById('group')
+    console.log("image div is :", imageDiv?.dataset.paths?.valueOf)
+    if (
+        localStorage.getItem('dark-mode') === 'true' ||
+        (!('dark-mode' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.getElementById("image").src = imageDiv?.dataset.dark;
+
+    } else {
+        document.getElementById("image").src = imageDiv?.dataset.light;
+    }
+</script> -->
