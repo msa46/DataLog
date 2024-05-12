@@ -1,10 +1,10 @@
 ---
-import { MarkdownInstance } from 'astro/dist/@types/astro';
+import { MDXInstance } from 'astro/dist/@types/astro';
 import Section from './Section.astro';
 import Card from './Card.astro';
 
 interface Props {
-	posts: MarkdownInstance<any>[];
+	posts: MDXInstance<any>[];
 }
 
 const { posts } = Astro.props;

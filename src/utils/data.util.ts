@@ -1,4 +1,4 @@
-import { MarkdownInstance } from "astro";
+import { MDXInstance } from "astro";
 
 export const formatDate = (pubDate: string) => {
   var options: Intl.DateTimeFormatOptions = {
@@ -11,7 +11,7 @@ export const formatDate = (pubDate: string) => {
   return new Date(pubDate).toLocaleDateString('en-US', options);
 }
 
-export const sortPostsByDate = (a: MarkdownInstance<any>, b: MarkdownInstance<any>) => {
+export const sortPostsByDate = (a: MDXInstance<any>, b: MDXInstance<any>) => {
   const pubDateA = new Date(a.frontmatter.pubDate);
   const pubDateB = new Date(b.frontmatter.pubDate);
   if (pubDateA < pubDateB) {

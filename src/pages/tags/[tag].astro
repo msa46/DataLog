@@ -4,19 +4,19 @@ import Card from '@/components/Card.astro';
 import Base from '@/layouts/Base.astro';
 import Heading from '@/components/Heading.astro';
 import { AppConfig } from '@/utils/AppConfig';
-import { MarkdownInstance } from 'astro/dist/@types/astro';
+import { MDXInstance } from 'astro/dist/@types/astro';
 
 export async function getStaticPaths(): Promise<any> {
-	const allPosts = await Astro.glob('../posts/*.md');
+	const allPosts = await Astro.glob('../posts/*.mdx');
 
 	const allTags: Set<string> = new Set(
-		allPosts.map((post: MarkdownInstance<Record<string, any>>) => post.frontmatter.tags).flat()
+		allPosts.map((post: MDXInstance<Record<string, any>>) => post.frontmatter.tags).flat()
 	);
 
 	return [...allTags].map((tag) => ({
 		params: { tag: tag },
 		props: {
-			posts: allPosts.filter((post: MarkdownInstance<Record<string, any>>) =>
+			posts: allPosts.filter((post: MDXInstance<Record<string, any>>) =>
 				post.frontmatter.tags.includes(tag)
 			)
 		}
@@ -24,7 +24,7 @@ export async function getStaticPaths(): Promise<any> {
 }
 
 interface Props {
-	posts: MarkdownInstance<Record<string, any>>[];
+	posts: MDXInstance<Record<string, any>>[];
 }
 
 const { tag } = Astro.params;
