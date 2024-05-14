@@ -31,7 +31,7 @@ const options = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://msa46.github.io',
+  site: 'https://astro-tech-blog-ten.vercel.app/',
   markdown: {
     syntaxHighlight: false,
     // Disable syntax built-in syntax hightlighting from astro
