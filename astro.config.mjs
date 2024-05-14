@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import rehypePrettyCode from 'rehype-pretty-code';
 import vercelStatic from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel/serverless'
 import react from '@astrojs/react';
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
@@ -39,10 +40,6 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime]
   },
   integrations: [tailwind(), react(), sitemap(), mdx()],
-  output: 'static',
-  adapter: vercelStatic({
-    webAnalytics: {
-      enabled: true
-    }
-  })
+  output: 'server',
+  adapter: vercel(),
 });
