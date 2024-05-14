@@ -7,7 +7,7 @@ interface Props{
 
 
 const {name, folder, title } = Astro.props;
-const basePath = '/src/assets/reports/' + folder 
+const basePath = '/reports/' + folder 
 const darkPath = basePath +  '/dark/' + name + '.png'
 const lightPath = basePath + '/light/' + name + '.png'
 ---
