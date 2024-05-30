@@ -1,0 +1,70 @@
+---
+layout: ../../layouts/post.astro
+title: "Food marketing campaign"
+pubDate: 2024-05-30
+description: "This is my analysis of a food marketing campaign"
+author: "Mohammad Sanaye Abbasi"
+excerpt: This is my report on a food marketing campaign conducted by a vendor
+image:
+  src:
+  alt:
+tags: ["Analysis", "Food", "Campaign"]
+---
+import { Image } from 'astro:assets';
+import Campaigns from '/public/reports/food/Campaign.png'
+import Degree from '/public/reports/food/Degree.png'
+import Marital from '/public/reports/food/Marital.png'
+import Averages from '/public/reports/food/Averages.png'
+import Response from '/public/reports/food/Response.png'
+
+In this report I want to look at a [Food  marketing campaigns](https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign) conducted by a vendor.
+All the calculations have been done through [this](https://docs.google.com/spreadsheets/d/1PrKcARDDJNMXsNhy2G5cEhUJa18uTWQ65qcaUFor9Kc/edit?usp=sharing) google spreadsheet.
+All the charts, pivot tables & processed data can be located in there.
+
+First, let's take a look at all the campaigns results:
+
+## Campaigns
+<Image src={Campaigns} alt="General campaign results"/>
+As we can see in this chart, The second campaign has the lowest rate of success with *5.9%*. We can also see that the highest rate of success is with the last campaign(Response).
+The campaign results gradualy increase with each campaign showing that we have managed to make better campaigns as time have moved on.
+
+Now let's take a look at distribution of these campaigns:
+
+## Distribution
+For starters, let's take a look at degree distribution among successful campaigns:
+<Image src={Degree} alt='Distribution of successful campaigns by degree' />
+With this chart we can observe that *49%* of theis successful atttendees have a higher degree than graduate. This should be considered for further investments in our customers.
+As another note, only *0.8%* of the attendees have not been graduated. This should also be considered for the next campaigns.
+
+While we are checking these distributions, It might be a good time to discuss the marital distribution among this successful campaigns:
+<Image src={Marital} alt='Marital distribution among successful campaigns' />
+We can group couple and married into one group. With that we could see *58.8%* of the successful results have been achieved amongst a family(of at least 2).
+
+As we do not have enough data to be sure if all the respondant who claim to be single are actually single or have been widowed or divorce, I can not comment on this situation with certainty.
+But if we consider the data to be exact & completley true, Then only *24.3%* of the attendees are single among the successful campaigns. While I did not put it in these charts, This data nearly mirrors the whole attendance rates.
+This can be observed through the pivot table provided in the aforementioned sheet. 
+
+With the distributions somewhat covered, Let's do a deep dive among averages:
+
+## Comparison
+For our fisrt chart in this part I want to observe the general difference between people who responded to any of the campaigns and people who did respond to at least one of the campaigns:
+<Image src={Averages} alt='Comparison of averages' />
+This data has been [standerdized](https://en.wikipedia.org/wiki/Standardization) so we can get more out of the comparisons as normally the range of values would differ among different consumption of products.
+
+We can clearly see a trend that consumption among people who succeeded the campaigns are higher, With wine having the highest degree of consumption and the biggest difference between the two sides.
+
+There is only one category that has a different change than others following it: average web visits per month. This category is moving in a differrent direction than others. This pattern can be because people won't go to site after they have accepted the campaign but we can observe it further with the last campaign comparrison:
+
+<Image src={Response} alt='Comparison of the final campaign'/>
+
+Response is the final campaign. We can see that there are some differences but the theme is generally the same with some minor changes compared to the average among all the campaigns.
+
+Except the averagee number of web visits per month. We can clearly see that there is no meaningful difference between people who accepted the last campaing and people who declined it in comparison tio the averages.
+
+With this I think we can conclude that the number of visits corelate to the campaigns people choose to accept. The furtheer they are down the line, The more likely it is for them to visit the website more often.
+
+## Final thoughts
+While this is a good set of data, I have question on validity of the gathered intel. I hope these information have not been obtained through surveys, let alone a single one. 
+There are also facts like number of web visits per month that we can not be certain of the validity, as maybe the user can just use a private tab or maybe not loged in until his final usage.
+
+That said, This dataset can be used as a stepping stone to find a basis for future reports and observations.
