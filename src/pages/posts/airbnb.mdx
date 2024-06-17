@@ -1,0 +1,120 @@
+---
+layout: ../../layouts/post.astro
+title: "Airbnb analysis"
+pubDate: 2024-06-18
+description: "This is my analysis of a gathered set of Airbnb data"
+author: "Mohammad Sanaye Abbasi"
+excerpt: This is my report on an extracted Airbnb dataset in Amsterdam, Antwerp & Berlin
+image:
+  src:
+  alt:
+tags: ["Analysis", "Airbnb", "Rent"]
+---
+import { Image } from 'astro:assets';
+import AVGNights from '/public/reports/airbnb/AVGNights.png'
+import AVGReviews from '/public/reports/airbnb/AVGReviews.png'
+import NeighbourhoodAntwerp from '/public/reports/airbnb/NeighbourhoodAntwerp.png'
+import NeighbourhoodAmsterdam from '/public/reports/airbnb/NeighbourhoodAmsterdam.png'
+import PropertySuperhostFalse from '/public/reports/airbnb/PropertySuperhostFalse.png'
+import PropertySuperhostTrue from '/public/reports/airbnb/PropertySuperhostTrue.png'
+import RatingAmsterdam from '/public/reports/airbnb/RatingAmsterdam.png'
+import RatingAntwerp from '/public/reports/airbnb/RatingAntwerp.png'
+import SuperhostAVGReviews from '/public/reports/airbnb/SuperhostAVGReviews.png'
+import SuperhostMinMaxNight from '/public/reports/airbnb/SuperhostMinMaxNight.png'
+
+In this report I want to look at [Airbnb](https://www.airbnb.com) data which are [publicly](https://insideairbnb.com/) available for further use.
+The dashboard for the current report has been setup with [Metabase](https://www.metabase.com) and is [publicly](http://msanayeabbasi-metabase.fly.dev/public/dashboard/9a0efbbc-86e8-45bb-b4a7-e4368db20051) available for use.
+
+Let's start by looking into the initial data:
+
+## Cities
+
+As you can observe through the home tab of the charts, These are the data you can check for each city. I will give my opinion about a few of them.
+
+Let's look at the neighbourhood desparity of prices in Amsterdam:
+
+<Image src={NeighbourhoodAmsterdam} alt='Neighbourhood price distribution in Amsterdam'/>
+
+We can see that there are a variaty of prices between 150 & 400 Euros while the prices are fairly in an even distribution amongs the neighbourhood.
+
+Now let's look twoards another city: Antwerp
+
+<Image src={NeighbourhoodAntwerp} alt='Neighbourhood price distribution in Antwerp'/>
+
+It is clear that the range of price difference is more than the amount we have in Amsterdam. Also we can observe that there is a larger group discrepency as there are more critical points in Antwerp compared to Amsterdam.
+
+Now let's observe another metric: Score rating. First let's take a look at Amsterdam:
+
+<Image src={RatingAmsterdam} alt='Score rating and pricing corelation in Amsterdam' />
+
+To my suprise, From the looks of it the corelation between price and acore rating in Amsterdam looks more like a normal distribution, Meaning high prices would mostly indicate a middle of the pac rating by the users.
+
+Let's look at the same stats for Antweerp:
+
+<Image src={RatingAntwerp} alt='Score rating and pricing corelation in Antwerp'/>
+
+Antwerp is closer to what I expected, As we can see the averages of prices are to some extent near the averages of scores.
+
+I should note that this is not the version I put in the [dashboard](http://msanayeabbasi-metabase.fly.dev/public/dashboard/9a0efbbc-86e8-45bb-b4a7-e4368db20051). This version does not contain the name of neighbourhood and the number of reviews for each respected chart.
+
+If we look at the number of reviews for each rating, We can see that the number of ratings between 0 to 3 are far less than the 4 & 5 ratings, So these ratings should not be relied upon in comparison.
+
+## comparison
+
+Now let's compare these 3 cities to eachother. First, Let's compare the reviews of these cities:
+
+<Image src={AVGReviews} alt='Average review rating of each city' />
+
+While we can observe that These set of data are pretty simiillar, We can clearly see that even though Antwerp is a big city, Compared to Berlin & Amsterdam which are the capital, It still has less reviews.
+
+Now let's take a look at the average amount of nights spent in these cities:
+
+<Image src={AVGNights} alt='Average nights spent in each city' />
+
+Iterestingly we can see people stay in Antwerp for a longer amount of time than Both Berlin & Amsterdam. It maybe duo to the fact that people who move to a city that is not the capital usually have a reason to stay for a longer amount of time.
+
+That said we can see that the average stay in Berlin is longer than the other two. Perhaps beacuse more people come to stay for events, It would be required to reserve the rooms for more days than a week. Maybe the UEFA fan festival which takes more than a month would increase this average.
+This has to be observed more delicatly though It is not available within this sets of data.
+
+Now let's walk through another topic: Super hosts.
+
+## Superhost
+
+[Superhost](https://www.airbnb.com/help/article/828) is an acolade in airbnb given to those who have high score in reviews. I want to look closely to available data from these superhosts.
+
+First, let's take a look at superhosts average revies:
+
+<Image src={SuperhostAVGReviews} alt='Review score comparison among the hosts in Amsterdam' />
+
+This chart is for the city of Amsterdam. While all cities follow the same trend in this categgory, The biggest difference in this category is in Amsterdam. The number of reviews for superhosts are near 5 time larger than people who aren't. This must mean they are using a way to get the guests to write a review. Maybe a research should be conducted to find out how they gather more reviews.
+
+Now let's look at the average of minimum & maximum nights in comparison between superhosts & regular hosts:
+
+<Image src={SuperhostMinMaxNight} alt='Maximum & minimum nights among the hosts in Amsterdam' />
+
+Again this is the chart for the city of Amsterdam as I did not want to clutter the charts and put all of them in one comparison. For this category It looks like all cities follow the same pattern:
+Higher maximum nights & lower minimum nights for superhosts in compare to the regular ones. The only exception to this rule iis Berlin in which Both category have a higher amount for non-superhosts.
+
+Let's check one more thing. Let's see what property types do regular hosts have:
+
+<Image src={PropertySuperhostFalse} alt='Property type for non-superhosts' />
+
+We clearly see that at least more than *76%* of the units are for entire house. We can see that *8%* of these are private housing but through further cleansing we might reach to a different result. However that is not what we are after.
+
+Let's take a look at the same stats for the superhosts:
+
+<Image src={PropertySuperhostTrue} alt='Property type for superhosts' />
+
+We can see the difference with one glance. at least *41%* of the superhosts have private housing units(rooms, beds,..) & even if all of the previous other percents were private housing still it would be **13%** less than the superhosts private housing.
+
+I think we can safely assume that either:
+- The private housing gain better/more reviews which would lead to them becoming superhosts 
+- Hosts who have private/single rooms applied more for 
+
+## Conclusion
+
+We are so privledged to live in times where there are so many datasets available for public use. Even though I wish I could tinker more with this report & gather All the data available and give more inputs(specially for different timely manners).
+
+I only could wish for more data(as any data analyst would) to see when these units where under usage. Having that data would clarify to some more extent why some of the data where as shown above.
+
+All in all, I hope I at least have managed to shed some light in dark corners of your thoughts regarding this matter & honored to share my reports with you as I always have.
